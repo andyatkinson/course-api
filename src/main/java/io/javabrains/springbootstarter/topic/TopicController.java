@@ -1,21 +1,21 @@
 package io.javabrains.springbootstarter.topic;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TopicController {
 	
+	//tell Spring to inject this, this annotation uses dependency injection
+	@Autowired
+	private TopicService topicService;
+	
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics() {
-		return Arrays.asList(
-				new Topic("spring", "Spring Framework", "desc"),
-				new Topic("java", "Core Java", "desc2"),
-				new Topic("javascript", "JavaScript", "desc3")
-				);
+		return topicService.getAllTopics();
 	}
 
 }
